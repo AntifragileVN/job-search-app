@@ -54,7 +54,7 @@ export default function JobsTable({ jobs }: { jobs: Job[] }) {
 												alt={`${job.employer_name}'s profile picture`}
 												loader={myLoader}
 											/>
-											<p>{job.employer_name}</p>
+											<p>{job.job_title}</p>
 										</div>
 										<p className="text-sm text-gray-500 line-clamp-4">
 											{job.job_description}

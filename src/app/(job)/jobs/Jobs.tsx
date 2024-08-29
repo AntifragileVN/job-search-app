@@ -4,10 +4,10 @@ import JobsTable from './table/table';
 import { jobs } from './table/jobs';
 import { Job } from '@/types/job.type';
 
-const Jobs = () => {
+const Jobs = ({ jobs }: { jobs: Job[] }) => {
 	return (
 		<>
-			<JobsTable jobs={jobs as unknown as Job[]} />
+			<JobsTable jobs={jobs} />
 		</>
 	);
 };
