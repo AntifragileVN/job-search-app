@@ -1,9 +1,6 @@
 'use client';
 
-import {
-	HeartIcon,
-	HomeIcon,
-} from '@heroicons/react/24/outline';
+import { HeartIcon, HomeIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
@@ -15,6 +12,11 @@ const links = [
 		name: 'Liked',
 		href: DASHBOARD_PAGES.LIKED,
 		icon: HeartIcon,
+	},
+	{
+		name: 'Profile',
+		href: DASHBOARD_PAGES.PROFILE,
+		icon: UserCircleIcon,
 	},
 ];
 
