@@ -8,6 +8,8 @@ import clsx from 'clsx';
 import { formatDateToLocal } from '@/utils/formatDateToLocal';
 import Link from 'next/link';
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
+import defaultCompanyLogo from '@/assets/default-company-logo.png';
+import { myLoader } from '@/utils/myLoader.util';
 
 type LikedJobs = string[];
 
@@ -40,16 +42,21 @@ export default function JobsTable({ jobs }: { jobs: Job[] }) {
 								<div className="flex items-center justify-between border-b pb-4">
 									<div>
 										<div className="mb-2 flex items-center">
-											{/* <Image
-												src={job.employer_logo || ''}
+											<Image
+												src={
+													job.employer_logo
+														? job.employer_logo
+														: defaultCompanyLogo
+												}
 												className="mr-2 rounded-full"
 												width={28}
 												height={28}
 												alt={`${job.employer_name}'s profile picture`}
-											/> */}
+												loader={myLoader}
+											/>
 											<p>{job.employer_name}</p>
 										</div>
-										<p className="text-sm text-gray-500">
+										<p className="text-sm text-gray-500 line-clamp-4">
 											{job.job_description}
 										</p>
 									</div>

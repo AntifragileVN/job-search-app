@@ -1,13 +1,15 @@
-'use client';
 import React from 'react';
-import JobsTable from './table/table';
-import { Job } from '@/types/job.type';
-import { jobs } from './table/jobs';
+import { Metadata } from 'next';
+import Jobs from './Jobs';
+
+export const metadata: Metadata = {
+	title: 'Jobs',
+};
 
 const Page = () => {
 	return (
 		<>
-			<JobsTable jobs={jobs as unknown as Job[]} />
+			<Jobs />
 		</>
 	);
 };
