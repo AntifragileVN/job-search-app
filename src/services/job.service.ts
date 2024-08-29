@@ -1,26 +1,49 @@
-import { GetJobsResponse } from '@/types/job.type';
+import { GetJobsResponse, Job } from '@/types/job.type';
 import axios, { AxiosResponse } from 'axios';
 
-const options = {
-	method: 'GET',
-	url: 'https://jsearch.p.rapidapi.com/search',
-	params: {
-		query: 'Node.js developer in New-York,USA',
-		page: '1',
-		num_pages: '1',
-		date_posted: 'all',
-	},
+// import axios from 'axios';
+// import config from '@/config';
+
+const jobApi = axios.create({
+	baseURL: 'https://jsearch.p.rapidapi.com',
 	headers: {
-		'x-rapidapi-key': process.env.RAPIDAPI_KEY,
+		'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
 		'x-rapidapi-host': 'jsearch.p.rapidapi.com',
 	},
+});
+
+export const jobFetcher = async (url: string) => {
+	const { data } = await jobApi.get(url);
+
+	return data;
+};
+export const multipleFetcher = (urls: string[]) => {
+	return Promise.all(urls.map((url) => jobFetcher(url)));
 };
 
-const getJobs = async () => {
+export const getJobs = async (query: string, page = 1) => {
 	try {
-		const response: AxiosResponse<GetJobsResponse> = await axios.request(options);
-		console.log(response.data);
+		const response: AxiosResponse<GetJobsResponse> = await jobApi.get('search', {
+			params: { query },
+		});
+		return response.data.data;
 	} catch (error) {
 		console.error(error);
+		return [] as Job[];
+	}
+};
+
+export const fetchJobDetails = async (jobId: string) => {
+	try {
+		const response = await jobApi.get('job-details', {
+			params: {
+				job_id: jobId,
+				extended_publisher_details: 'false',
+			},
+		});
+		return response.data;
+	} catch (error) {
+		console.error(`Failed to fetch details for job ID: ${jobId}`, error);
+		return null;
 	}
 };

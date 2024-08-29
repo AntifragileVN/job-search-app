@@ -26,13 +26,14 @@ const Page = ({ searchParams }: { searchParams?: { job?: string; page?: string }
 			about: '',
 		},
 	});
+
 	const searchedJob = searchParams?.job || profile.preferred_job;
 	const filteredJobs = jobs.filter((arrayJob) =>
 		arrayJob.job_title.toLocaleLowerCase().includes(searchedJob.toLocaleLowerCase())
 	);
 	return (
 		<>
-			<Jobs jobs={filteredJobs as unknown as Job[]} />
+			<Jobs />
 		</>
 	);
 };
