@@ -7,6 +7,7 @@ import type { Job } from '@/types/job.type';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import Search from './search/Search';
+import { JobsTableSkeleton } from './table/Skeleton';
 import JobsTable from './table/table';
 import { useSearchJob } from './useSearchJobs';
 
@@ -39,14 +40,14 @@ const Jobs = ({
 
 	const { data, isLoading, error } = useSearchJob(shouldFetch, searchedJob);
 
-	if (isLoading && !data) {
-		return null;
-	}
-
 	return (
 		<>
 			<Search placeholder='Example job ...' />
-			<JobsTable jobs={data?.data ? (data?.data as unknown as Job[]) : []} />
+			{isLoading ? (
+				<JobsTableSkeleton />
+			) : (
+				<JobsTable jobs={data?.data ? (data?.data as unknown as Job[]) : []} />
+			)}
 		</>
 	);
 };

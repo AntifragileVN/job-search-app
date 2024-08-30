@@ -23,7 +23,7 @@ const Liked = () => {
 	if (isLoading && !data) {
 		return null;
 	}
-	console.log(data);
+
 	return <>{<JobsTable jobs={data as unknown as Job[]} />}</>;
 };
 
