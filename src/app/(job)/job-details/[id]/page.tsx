@@ -1,11 +1,10 @@
-import React from 'react';
-import JobDetails from './JobDetails';
 import { Metadata } from 'next';
-import { Job } from '@/types/job.type';
-import { jobs } from '../../jobs/table/jobs';
+import React from 'react';
+
+import JobDetails from './JobDetails';
 
 export const metadata: Metadata = {
-	title: 'Job details',
+	title: 'Job details'
 };
 
 const Page = ({ params }: { params: { id: string } }) => {

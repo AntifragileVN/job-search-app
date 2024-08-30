@@ -1,11 +1,14 @@
 'use client';
+
 import React from 'react';
-import JobsTable from './table/table';
-import { jobs } from './table/jobs';
-import { Job } from '@/types/job.type';
-import Search from './search/Search';
-import { useSearchJob } from './useSearchJobs';
+
+import type { Job } from '@/types/job.type';
+
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+
+import Search from './search/Search';
+import JobsTable from './table/table';
+import { useSearchJob } from './useSearchJobs';
 
 type Profile = {
 	name: string;
@@ -13,14 +16,18 @@ type Profile = {
 	preferred_job: string;
 };
 
-const Jobs = ({ searchParams }: { searchParams?: { job?: string; page?: string } }) => {
+const Jobs = ({
+	searchParams
+}: {
+	searchParams?: { job?: string; page?: string };
+}) => {
 	const [profile, _, profileLoading] = useLocalStorage<Profile>({
 		key: 'profile',
 		defaultValue: {
 			name: '',
 			preferred_job: '',
-			about: '',
-		},
+			about: ''
+		}
 	});
 
 	const searchedJob =
@@ -38,7 +45,7 @@ const Jobs = ({ searchParams }: { searchParams?: { job?: string; page?: string }
 
 	return (
 		<>
-			<Search placeholder="Example job ..." />
+			<Search placeholder='Example job ...' />
 			<JobsTable jobs={data?.data ? (data?.data as unknown as Job[]) : []} />
 		</>
 	);

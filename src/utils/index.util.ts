@@ -1,1 +1,1 @@
-export * from './formatDateToLocal'
+export * from './formatDateToLocal';

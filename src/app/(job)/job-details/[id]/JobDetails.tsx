@@ -1,9 +1,12 @@
 'use client';
-import React from 'react';
+
 import Image from 'next/image';
-import { Job } from '@/types/job.type';
-import { myLoader } from '@/utils/myLoader.util';
+import React from 'react';
+
 import defaultCompanyLogo from '@/assets/default-company-logo.png';
+
+import { myLoader } from '@/utils/myLoader.util';
+
 import useGetJobDetails from './useGetJobDetails';
 
 const JobDetails = ({ jobId }: { jobId: string }) => {
@@ -17,7 +20,7 @@ const JobDetails = ({ jobId }: { jobId: string }) => {
 	return (
 		<div>
 			<h1>{job_title}</h1>
-			<div className="flex">
+			<div className='flex'>
 				<Image
 					src={employer_logo ? employer_logo : defaultCompanyLogo}
 					alt={`${employer_name} company logo`}
@@ -29,7 +32,10 @@ const JobDetails = ({ jobId }: { jobId: string }) => {
 			</div>
 			{job_description
 				? job_description.split('\n\n').map((paragraf, index) => (
-						<p className="mb-2" key={index}>
+						<p
+							className='mb-2'
+							key={index}
+						>
 							{paragraf}
 						</p>
 					))

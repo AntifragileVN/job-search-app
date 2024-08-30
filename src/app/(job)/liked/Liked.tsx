@@ -1,19 +1,22 @@
 'use client';
+
 import React from 'react';
 
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import useGetLikedJobs from './useGetLikedJobs';
-import JobsTable from '../jobs/table/table';
 import { Job } from '@/types/job.type';
+
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+
+import JobsTable from '../jobs/table/table';
+
+import useGetLikedJobs from './useGetLikedJobs';
+
 type LikedJobs = string[];
 
 const Liked = () => {
 	const [liked, _, isLikedLoading] = useLocalStorage<LikedJobs>({
 		key: 'liked',
-		defaultValue: [],
+		defaultValue: []
 	});
-
-	// const likedJobs = jobs.filter((job) => liked.includes(job.job_id));
 
 	const { data, isLoading } = useGetLikedJobs(!isLikedLoading, liked);
 
