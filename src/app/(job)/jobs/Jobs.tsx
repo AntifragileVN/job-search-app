@@ -23,18 +23,18 @@ const Jobs = ({ searchParams }: { searchParams?: { job?: string; page?: string }
 		},
 	});
 
-	const searchedJob = searchParams?.job || profile.preferred_job;
+	const searchedJob =
+		searchParams?.job ||
+		(profileLoading ? 'Frontend' : profile.preferred_job) ||
+		'Frontend';
 
-	const { data, isLoading, error } = useSearchJob(
-		!profileLoading && profile.preferred_job !== '',
-		searchedJob
-	);
+	const shouldFetch = !!searchedJob && !profileLoading;
+
+	const { data, isLoading, error } = useSearchJob(shouldFetch, searchedJob);
 
 	if (isLoading && !data) {
 		return null;
 	}
-
-	console.log(data);
 
 	return (
 		<>
