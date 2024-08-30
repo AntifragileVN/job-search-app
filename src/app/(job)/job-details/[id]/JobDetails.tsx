@@ -5,12 +5,11 @@ import React from 'react';
 
 import defaultCompanyLogo from '@/assets/default-company-logo.png';
 
-import { myLoader } from '@/utils/myLoader.util';
-
 import useGetJobDetails from './useGetJobDetails';
+import * as utils from '@/utils';
 
 const JobDetails = ({ jobId }: { jobId: string }) => {
-	const { data, isLoading } = useGetJobDetails(!!jobId, jobId || '');
+	const { data } = useGetJobDetails(!!jobId, jobId || '');
 
 	if (!data) {
 		return null;
@@ -26,7 +25,7 @@ const JobDetails = ({ jobId }: { jobId: string }) => {
 					alt={`${employer_name} company logo`}
 					width={40}
 					height={40}
-					loader={myLoader}
+					loader={utils.myLoader}
 				/>
 				<span>{employer_name}</span>
 			</div>

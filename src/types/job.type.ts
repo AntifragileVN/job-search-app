@@ -14,7 +14,7 @@ export interface Parameters {
 export interface Job {
 	employer_name: string;
 	employer_logo?: string;
-	employer_website?: string;
+	employer_website?: string | null;
 	employer_company_type?: string;
 	job_publisher: string;
 	job_id: string;
@@ -32,20 +32,20 @@ export interface Job {
 	job_country: string;
 	job_latitude: number;
 	job_longitude: number;
-	job_benefits?: string[];
+	job_benefits?: string[] | null;
 	job_google_link: string;
-	job_offer_expiration_datetime_utc?: string;
-	job_offer_expiration_timestamp?: number;
+	job_offer_expiration_datetime_utc?: string | null;
+	job_offer_expiration_timestamp?: number | null;
 	job_required_experience: JobRequiredExperience;
-	job_required_skills?: string[];
+	job_required_skills?: string[] | null;
 	job_required_education: JobRequiredEducation;
 	job_experience_in_place_of_education: boolean;
-	job_min_salary?: number;
-	job_max_salary?: number;
-	job_salary_currency?: string;
-	job_salary_period?: string;
+	job_min_salary?: number | null;
+	job_max_salary?: number | null;
+	job_salary_currency?: string | null;
+	job_salary_period?: string | null;
 	job_highlights: JobHighlights;
-	job_job_title?: string;
+	job_job_title?: string | null;
 	job_posting_language: string;
 	job_onet_soc: string;
 	job_onet_job_zone: string;

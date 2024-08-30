@@ -2,8 +2,6 @@
 
 import React from 'react';
 
-import type { Job } from '@/types/job.type';
-
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import Search from './search/Search';
@@ -38,15 +36,15 @@ const Jobs = ({
 
 	const shouldFetch = !!searchedJob && !profileLoading;
 
-	const { data, isLoading, error } = useSearchJob(shouldFetch, searchedJob);
+	const { data, isLoading } = useSearchJob(shouldFetch, searchedJob);
 
 	return (
 		<>
 			<Search placeholder='Example job ...' />
-			{isLoading ? (
-				<JobsTableSkeleton />
+			{!isLoading && data?.data ? (
+				<JobsTable jobs={data?.data} />
 			) : (
-				<JobsTable jobs={data?.data ? (data?.data as unknown as Job[]) : []} />
+				<JobsTableSkeleton />
 			)}
 		</>
 	);
