@@ -4,21 +4,22 @@ import Image from 'next/image';
 import { Job } from '@/types/job.type';
 import { myLoader } from '@/utils/myLoader.util';
 import defaultCompanyLogo from '@/assets/default-company-logo.png';
+import useGetJobDetails from './useGetJobDetails';
 
-type JobDetailsProps = { job: Job };
+const JobDetails = ({ jobId }: { jobId: string }) => {
+	const { data, isLoading } = useGetJobDetails(!!jobId, jobId || '');
 
-const JobDetails = ({ job }: JobDetailsProps) => {
-	if (!job) {
+	if (!data) {
 		return null;
 	}
 
-	const { job_title, job_description, employer_logo, employer_name } = job;
+	const { job_title, job_description, employer_logo, employer_name } = data[0];
 	return (
 		<div>
 			<h1>{job_title}</h1>
 			<div className="flex">
 				<Image
-					src={job.employer_logo ? job.employer_logo : defaultCompanyLogo}
+					src={employer_logo ? employer_logo : defaultCompanyLogo}
 					alt={`${employer_name} company logo`}
 					width={40}
 					height={40}

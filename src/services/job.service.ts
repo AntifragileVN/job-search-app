@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 // import axios from 'axios';
 // import config from '@/config';
 
-const jobApi = axios.create({
+export const jobApi = axios.create({
 	baseURL: 'https://jsearch.p.rapidapi.com',
 	headers: {
 		'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,

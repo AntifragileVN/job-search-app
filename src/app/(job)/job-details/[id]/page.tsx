@@ -12,14 +12,9 @@ const Page = ({ params }: { params: { id: string } }) => {
 	const encodedId = params.id;
 	const id = decodeURIComponent(encodedId);
 
-	if (!id) {
-		return null;
-	}
-	const job = jobs.find((job) => job.job_id === id);
-
 	return (
 		<>
-			<JobDetails job={job as unknown as Job} />
+			<JobDetails jobId={id} />
 		</>
 	);
 };

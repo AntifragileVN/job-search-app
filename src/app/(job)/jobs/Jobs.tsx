@@ -13,7 +13,7 @@ type Profile = {
 	preferred_job: string;
 };
 
-const Jobs = () => {
+const Jobs = ({ searchParams }: { searchParams?: { job?: string; page?: string } }) => {
 	const [profile, _, profileLoading] = useLocalStorage<Profile>({
 		key: 'profile',
 		defaultValue: {
@@ -23,9 +23,11 @@ const Jobs = () => {
 		},
 	});
 
+	const searchedJob = searchParams?.job || profile.preferred_job;
+
 	const { data, isLoading, error } = useSearchJob(
 		!profileLoading && profile.preferred_job !== '',
-		profile.preferred_job
+		searchedJob
 	);
 
 	if (isLoading && !data) {
