@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { SITE_NAME } from '@/constants/seo.constants';
 
@@ -21,7 +22,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<>
+					<Toaster position='bottom-center' />
+					{children}
+				</>
+			</body>
 		</html>
 	);
 }

@@ -5,6 +5,7 @@ import { UserCircleIcon } from '@heroicons/react/24/outline';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 import { Button } from '@/components/ui/button';
 
@@ -40,6 +41,9 @@ const CreateProfile = () => {
 
 		onSubmit: values => {
 			setProfile(values);
+			toast.success(
+				profile?.name ? 'Update user success' : 'Create user success'
+			);
 			console.log(values);
 		}
 	});
