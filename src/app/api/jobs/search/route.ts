@@ -11,6 +11,8 @@ export async function GET(req: NextRequest) {
 		const response = await jobApi.get('/search', {
 			params: { query, page }
 		});
+
+		console.log(response);
 		return NextResponse.json(response.data);
 	} catch (error) {
 		console.error('Failed to fetch jobs:', error);
