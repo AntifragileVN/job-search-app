@@ -3,12 +3,12 @@ import useSWR from 'swr';
 
 import { GetJobsResponse } from '@/types/job.type';
 
-import * as api from '@/services';
+import {fetcher} from '@/services';
 
 export default function useGetJobDescription(shouldFetch: boolean, id: string) {
 	const { data, error } = useSWR<GetJobsResponse, AxiosError<Error>>(
-		shouldFetch ? `job-details?job_id=${id}` : null,
-		api.jobFetcher
+		shouldFetch ? `/api/jobs/details?job_id=${id}` : null,
+		fetcher
 	);
 	return {
 		data: data?.data,

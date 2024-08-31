@@ -1,14 +1,14 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
 import { GetJobsResponse } from '@/types/job.type';
 
-import * as api from '@/services';
+import { fetcher } from '@/services';
 
 export const useSearchJob = (shouldFetch: boolean, query: string, page = 1) => {
 	const { data, isLoading, error } = useSWR<GetJobsResponse, AxiosError<Error>>(
-		shouldFetch ? `/search?query=${query}&page=${page}` : null,
-		api.jobFetcher
+		shouldFetch ? `/api/jobs/search?query=${query}&page=${page}` : null,
+		fetcher
 	);
 
 	return { data, isLoading, error };

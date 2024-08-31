@@ -5,18 +5,17 @@ import { GetJobsResponse, Job } from '@/types/job.type';
 export const jobApi = axios.create({
 	baseURL: 'https://jsearch.p.rapidapi.com',
 	headers: {
-		'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+		'x-rapidapi-key': process.env.RAPIDAPI_KEY,
 		'x-rapidapi-host': 'jsearch.p.rapidapi.com'
 	}
 });
 
-export const jobFetcher = async (url: string) => {
-	const { data } = await jobApi.get(url);
-
+export const fetcher = async (url: string) => {
+	const { data } = await axios.get(url);
 	return data;
 };
 export const multipleFetcher = (urls: string[]) => {
-	return Promise.all(urls.map(url => jobFetcher(url)));
+	return Promise.all(urls.map(url => fetcher(url)));
 };
 
 export const getJobs = async (query: string, page = 1) => {
