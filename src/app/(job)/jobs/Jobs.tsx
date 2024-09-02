@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import Pagination from '@/components/ui/jobs/pagination';
+
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import Search from './search/Search';
@@ -46,6 +48,9 @@ const Jobs = ({
 			) : (
 				<JobsTableSkeleton />
 			)}
+			<div className='mt-5 flex w-full justify-center'>
+				<Pagination totalPages={data?.parameters.num_pages || 1} />
+			</div>
 		</>
 	);
 };
