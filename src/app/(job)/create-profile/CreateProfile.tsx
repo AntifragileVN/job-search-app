@@ -4,22 +4,17 @@ import { BriefcaseIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import { useFormik } from 'formik';
 import Link from 'next/link';
-import React from 'react';
 import toast from 'react-hot-toast';
 
 import { Button } from '@/components/ui/button';
+
+import type { Profile } from '@/types/profile.type';
 
 import { DASHBOARD_PAGES } from '@/config/pages-url.config';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import { createProfileSchema } from './createProfileSchema';
-
-type Profile = {
-	name: string;
-	about: string;
-	preferred_job: string;
-};
 
 const CreateProfile = () => {
 	const [profile, setProfile] = useLocalStorage<Profile>({

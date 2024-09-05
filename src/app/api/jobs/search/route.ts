@@ -12,7 +12,6 @@ export async function GET(req: NextRequest) {
 			params: { query, page }
 		});
 
-		console.log(response);
 		return NextResponse.json(response.data);
 	} catch (error) {
 		console.error('Failed to fetch jobs:', error);

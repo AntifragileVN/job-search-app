@@ -4,18 +4,14 @@ import React from 'react';
 
 import Pagination from '@/components/ui/jobs/pagination';
 
+import type { Profile } from '@/types/profile.type';
+
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import Search from './search/Search';
 import { JobsTableSkeleton } from './table/Skeleton';
 import JobsTable from './table/table';
 import { useSearchJob } from './useSearchJobs';
-
-type Profile = {
-	name: string;
-	about: string;
-	preferred_job: string;
-};
 
 const Jobs = ({
 	searchParams
